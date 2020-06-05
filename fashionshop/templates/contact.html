@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+{% block content %}
+<!-- Page Add Section Begin -->
+<section class="page-add">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="page-breadcrumb">
+                    <h2>Contact us<span>.</span></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Page Add Section End -->
+
+<!-- Contact Section Begin -->
+<div class="contact-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <form action="{{ url_for('contact') }}" class="contact-form" method = "POST">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <input type="text" placeholder="First Name" name="firstname">
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" placeholder="Last Name" name="lastname">
+                        </div>
+                        <div class="col-lg-12">
+                            <input type="email" placeholder="E-mail" name="email">
+                            <input type="text" placeholder="Subject" name="subject">
+                            <textarea placeholder="Message" name="message"></textarea>
+                        </div>
+                        <div class="col-lg-12 text-right">
+                            <button type="submit">Send message</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-3 offset-lg-1">
+                <div class="contact-widget">
+                    <div class="cw-item">
+                        <h5>Location</h5>
+                        <ul>
+                            <li>Quoc Huong, </li>
+                            <li>Thao Dien, Ho Chi Minh city</li>
+                        </ul>
+                    </div>
+                    <div class="cw-item">
+                        <h5>Phone</h5>
+                        <ul>
+                            <li>+1 (603)535-4592</li>
+                            <!-- <li>+1 (603)535-4556</li> -->
+                        </ul>
+                    </div>
+                    <div class="cw-item">
+                        <h5>E-mail</h5>
+                        <ul>
+                            <li>caongochoangvan1999@gmail.com</li>
+                            <!-- <li>www.violetstore.com</li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="map">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- <iframe
+                        src="https://www.google.com/maps/place/Th%E1%BA%A3o+%C4%90i%E1%BB%81n,+Qu%E1%BA%ADn+2,+H%E1%BB%93+Ch%C3%AD+Minh,+Vi%E1%BB%87t+Nam/@10.809279,106.7266634,15z/data=!3m1!4b1!4m5!3m4!1s0x3175263d580e4583:0x6d25e042c3aed063!8m2!3d10.8064331!4d106.7323097?hl=vi-VN"
+                        height="560" style="border:0;" allowfullscreen=""></iframe> -->
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15676.106168155287!2d106.72666341651781!3d10.809278953861254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175263d580e4583%3A0x6d25e042c3aed063!2zVGjhuqNvIMSQaeG7gW4sIFF14bqtbiAyLCBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1587215307525!5m2!1svi!2s" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact Section End -->
+{% endblock content %}

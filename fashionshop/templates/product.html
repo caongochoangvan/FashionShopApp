@@ -1,0 +1,226 @@
+{% extends "layout.html" %}
+{% block content %}
+    <!-- Page Add Section Begin -->
+    <section class="page-add">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="page-breadcrumb">
+                        <h2>Categories<span>.</span></h2>
+                        <a href="#">Men</a>
+                        <a href="#">Women</a>
+                        <a class="active" href="#">Fragrance</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Page Add Section End -->
+
+    <!-- Product Page Section Beign -->
+    <section class="product-page">
+        <div class="container">
+            <div class="product-control">
+                <a href="#">Previous</a>
+                <a href="#">Next</a>
+            </div>
+            <!-- {{ url_for('static', filename='img/product/product-1.jpg') }} -->          
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="product-slider owl-carousel">
+                        <div class="product-img">
+                            <figure>
+                                <img src="{{ url_for('static', filename='image/' + product.image_file) }}" alt="">
+                                <div class="p-status">new</div>
+                            </figure>
+                        </div>
+                        <div class="product-img">
+                            <figure>
+                                <img src="{{ url_for('static', filename='image/' + product.image_file) }}" alt="">
+                                <div class="p-status">new</div>
+                            </figure>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-lg-6">
+                    
+                    <div class="product-content">
+                        <h2>{{ product.title }}</h2>
+                        <div class="pc-meta">
+                            <h5>$ {{ product.price }}</h5>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                        <p>{{ product.description }}</p>
+                        <ul class="tags">
+                            <li><span>Category :</span> {{ product.type.name }}</li>
+                            <li><span>Tags :</span> man, shirt, dotted, elegant, cool</li>
+                        </ul>
+                        <form method="POST" action="">
+                        <div class="product-quantity">
+                            <div class="pro-qty">
+                                
+                                <input type="text" value="1" name = "quantity">
+                                
+                            </div>
+                        </div>
+                        <input type="submit" class="primary-btn pc-btn" value="Add to cart">
+                        </form>
+                        <ul class="p-info">
+                            <li>Product Information</li>
+                            <li>Reviews</li>
+                            <li>Product Care</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Product Page Section End -->
+    <!-- Comments Section Begin -->
+    <section class="related-product spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-left">
+                    <div class="section-title">
+                        <h3>Comments</h3>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="row"></div> -->
+            <article class="row">
+                <div class="col-md-12 col-sm-12">
+                <div class="panel panel-default arrow left">
+                    <div class="panel-body">
+                    <header class="text-left">
+                        <div class="comment-user"><i class="fa fa-user"></i> Van</div>
+                        <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> June 4, 2020</time>
+                    </header>
+                    <div class="comment-post">
+                        <p>
+                            I think you were made to fit perfectly in my arms.
+                        </p>
+                    </div>
+                    <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> </a></p>
+                    <hr>  
+
+                    </div>
+                </div>
+                </div>
+            
+            </article>
+        
+            <article class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="panel panel-default arrow left">
+                        <div class="panel-body">
+                            <header class="text-left">
+                                <div class="comment-user "style="color: red;"><i class="fa fa-user-circle-o"></i> Bot</div>
+                                <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Jun 04, 2020</time>
+
+                            </header>
+                            
+                            <div class="comment-post">
+                                <p>
+                                    I feel completely comfortable with you.
+
+                                </p>
+                            </div>
+                                <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> </a></p>
+                                <hr>  
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <div class="row">
+                <div class="col-lg-1">
+                    <!-- <input type="submit" placeholder="Comment" name="comment"> -->
+                    <p class=""><a href="#" class="btn btn-default btn-sm"><i class="fa fa-telegram fa-2x"></i> </a></p>
+                </div>
+                <div class="col-lg-11">
+                    <form class="contact-form">
+                        
+                            <input type="text" placeholder="Type your text ..." name="comment">
+                    
+                        
+         
+                    </form>
+                </div>
+                
+            </div>
+
+           
+        </div>
+    </section>
+    <!-- Related Product Section Begin -->
+    <section class="related-product spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-title">
+                        <h2>Related Products</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                    {% for recommended_product in recommended_products %}
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="single-product-item">
+                                <figure>
+                                    <a href="#"><img src="{{ url_for('static', filename='image/' + recommended_product.image_file) }}" alt=""></a>
+                                    <div class="p-status">new</div>
+                                </figure>
+                                <div class="product-text">
+                                    <h6> {{ recommended_product.title }}</h6>
+                                    <p>$ {{ recommended_product.price }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                <!-- <div class="col-lg-3 col-sm-6">
+                    <div class="single-product-item">
+                        <figure>
+                            <a href="#"><img src="{{ url_for('static', filename='img/products/img-2.jpg') }}" alt=""></a>
+                            <div class="p-status sale">sale</div>
+                        </figure>
+                        <div class="product-text">
+                            <h6>Yellow Maxi Dress</h6>
+                            <p>$25.90</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-product-item">
+                        <figure>
+                            <a href="#"><img src="{{ url_for('static', filename='img/products/img-3.jpg') }}" alt=""></a>
+                            <div class="p-status">new</div>
+                        </figure>
+                        <div class="product-text">
+                            <h6>One piece bodysuit</h6>
+                            <p>$19.90</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-product-item">
+                        <figure>
+                            <a href="#"><img src="{{ url_for('static', filename='img/products/img-4.jpg') }}" alt=""></a>
+                            <div class="p-status popular">popular</div>
+                        </figure>
+                        <div class="product-text">
+                            <h6>Blue Dress with details</h6>
+                            <p>$35.50</p>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+    <!-- Related Product Section End -->
+{% endblock content %}

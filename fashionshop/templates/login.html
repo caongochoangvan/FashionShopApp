@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+{% block content %}
+<!-- Page Add Section Begin -->
+<section class="page-add">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="page-breadcrumb">
+                    <h2>Login<span>.</span></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Page Add Section End -->
+<!-- Cart Total Page Begin -->
+<section class="cart-total-page spad">
+    <div class="container">
+        <form action="" class="checkout-form" method='POST'>
+            {{ form.hidden_tag() }}
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>Your Information</h3>
+                </div>
+                <div class="col-lg-9">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <p class="in-name">{{ form.email.label }}</p>
+                        </div>
+                        <div class="col-lg-10">
+                            {% if form.email.errors %}
+                                {{ form.email(class="form-control form-control-lg is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.email.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                            {% else %}
+                                {{ form.email(class="form-control form-control-lg") }}
+                            {% endif %}
+                        </div>
+        
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <p class="in-name">{{ form.password.label }}</p>
+                        </div>
+                        <div class="col-lg-10">
+                            {% if form.password.errors %}
+                                {{ form.password(class="form-control form-control-lg is-invalid") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.password.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                            {% else %}
+                                {{ form.password(class="form-control form-control-lg") }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 text-right">
+                            <div class="diff-addr">
+                                <input type="radio" id="one">
+                                <label for="one">Remember your password? </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="payment-method text-center">
+                        <button type="submit">Login</button>
+                        <a href="#">Forget password?</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<!-- Cart Total Page End -->
+{% endblock content %}

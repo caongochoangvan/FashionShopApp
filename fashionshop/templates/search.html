@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="categories-page spad">
+    <div class="container">
+        <div class="categories-controls">
+            <h3>Found <b>{{ found }}</b> items </h3>
+        </div>
+        <div class="row">
+            {% for product in products %}
+            <div class="col-lg-3 col-md-6">
+                <div class="single-product-item">
+                    <figure><!-- {{ url_for('static', filename='img/icons/zoom-plus.png') }} -->
+                        <img src="{{ url_for('static', filename='img/products/' + product.image_file) }}" alt="">
+                        <div class="p-status">new</div>
+                        <div class="hover-icon">
+                            <a href="{{ url_for('static', filename='img/products/' + product.image_file) }}" class="pop-up"><img src="{{ url_for('static', filename='img/icons/zoom-plus.png') }}"
+                                    alt=""></a>
+                        </div>
+                    </figure>
+                    <div class="product-text">
+                        <a href="{{ url_for('product', product_id = product.id)}}">
+                            <h6> {{ product.title }}</h6>
+                        </a>
+                        <p>$ {{ product.price }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}  
+        <div class="more-product">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <!-- <a href="#" class="primary-btn">Load More</a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

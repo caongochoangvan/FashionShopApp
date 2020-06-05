@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Yoga Studio Template">
+    <meta name="keywords" content="Yoga, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% if title %}
+    <title>Fashion Shop - {{ title }}</title>
+    {% else %}
+    <title>Fashion Shop</title>
+    {% endif %}
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap"
+        rel="stylesheet">
+    <!-- Css Styles -->
+    <!--{{ url_for('static', filename='css/bootstrap.min.css') }}  -->
+    <!--{{ url_for('static', filename='css/font-awesome.min.css') }}  -->
+    <!--{{ url_for('static', filename='css/nice-select.css') }}  -->
+    <!--{{ url_for('static', filename='css/owl.carousel.min.css') }}  -->
+    <!--{{ url_for('static', filename='css/magnific-popup.css') }}  -->
+    <!--{{ url_for('static', filename='css/slicknav.min.css') }}  -->
+    <!--{{ url_for('static', filename='css/style.css') }}  -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nice-select.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/slicknav.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+    
+    <!-- Search model -->
+	<div class="search-model">
+		<div class="h-100 d-flex align-items-center justify-content-center">
+			<div class="search-close-switch">+</div>
+			<form class="search-model-form", method = "POST", action="{{ url_for('search') }}">
+                <input type="text" id="search-input" placeholder="Search here....." name = "query">
+                <input type="submit" 
+                style="display:none" />
+			</form>
+		</div>
+	</div>
+	<!-- Search model end -->
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        <div class="container-fluid">
+            <div class="inner-header">
+                <div class="logo navbar-brand">
+                    <a href="{{ url_for('home') }}">
+                        <img src="{{ url_for('static', filename='img/ico.PNG') }}" alt="">
+                        <!-- <img src="{{ url_for('static', filename='img/new-icon.png') }}" alt=""> -->
+                        
+                    </a>
+                </div>
+    <!--{{ url_for('static', filename='img/icons/bag.png') }}  -->
+                <div class="header-right">
+                    <img src="{{ url_for('static', filename='img/icons/search.png') }}" alt="" class="search-trigger">
+                    <img src="{{ url_for('static', filename='img/icons/man.png') }}" alt="">
+                    <a href="{{ url_for('cart') }}">
+                        <img src="{{ url_for('static', filename='img/icons/bag.png') }}" alt="">
+                        {% if "quantity" in session %}
+                            <span>{{ session['quantity'] }}</span>
+                        {% else %}
+                            <span> 0 </span>
+                        {% endif %}    
+                    </a>
+                </div>
+                <div class="user-access">
+                    <a href="{{ url_for('register') }}">Register</a>
+                    <a href="{{ url_for('login') }}" class="in">Log in</a>
+                </div>
+                <nav class="main-menu mobile-menu">
+                    <ul>
+                        <li><a class="active" href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="{{ url_for('categories') }}">Shop</a>
+                            <ul class="sub-menu">
+                                <li><a href="{{ url_for('category', category_name = 'Men') }}">Men</a></li>
+                                <li><a href="{{ url_for('category', category_name = 'Women') }}">Women</a></li>
+                                <li><a href="{{ url_for('category', category_name = 'Fragrance') }}">Fragrance</a></li>
+                               
+                                <!-- <li><a href="{{ url_for('cart') }}">Shopping Cart</a></li> -->
+                                <!-- <li><a href="{{ url_for('checkout') }}">Check out</a></li> -->
+                            </ul>
+                        </li>
+                        <li><a href="{{ url_for('about') }}">About</a></li>
+                        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+    <div class="col-md-8">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        
+      </div>
+      {% block content %}{% endblock %}
+    <!-- block content -->
+    <!-- Footer Section Begin -->
+    <footer class="footer-section spad">
+        <div class="container">
+            <div class="newslatter-form">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form action="#" mehod = "Post">
+                            <input type="text" placeholder="Your email address" name="subcribe_email">
+                            <button type="submit">Subscribe to our newsletter</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="social-links-warp">
+			<div class="container">
+				<div class="social-links text-center">
+					<a href="" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
+					<!-- <a href="" class="pinterest"><i class="fa fa-pinterest"></i><span>pinterest</span></a> -->
+					<a href="" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
+					<!-- <a href="" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a> -->
+					<!-- <a href="" class="youtube"><i class="fa fa-youtube"></i><span>youtube</span></a> -->
+					<!-- <a href="" class="tumblr"><i class="fa fa-tumblr-square"></i><span>tumblr</span></a> -->
+				</div>
+			</div>
+
+<div class="container text-center pt-5">
+                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  <!-- Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> -->
+                    Cao Ngoc Hoang Van
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+            </div>
+
+
+		</div>
+    </footer>
+    <!-- Footer Section End -->
+    <!-- {{ url_for('static', filename='js/main.js') }} -->
+    <!-- Js Plugins -->
+    <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.slicknav.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/mixitup.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>
+<!-- Todo: Done -->

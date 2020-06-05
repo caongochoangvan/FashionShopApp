@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+{% block content %}
+<!-- Page Add Section Begin -->
+<section class="page-add">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="page-breadcrumb">
+                    <h2>Categories<span>.</span></h2>
+                    {% if not category %}
+                        <a class="active" href="{{ url_for('categories')}}">All</a>
+                    {% else %}
+                        <a href="{{ url_for('categories')}}">All</a>
+                    {% endif%}
+                    {% for categori in categories %}
+                        {% if categori == category %}
+                            <a class="active" href="{{ url_for('category',category_name = categori.name)}}">{{ category.name }}</a>
+                        {% else %}
+                            <a href="{{ url_for('category',category_name = categori.name)}}">{{ categori.name }}</a>
+                        {% endif %}
+                    {% endfor %}    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Page Add Section End -->
+
+<!-- Categories Page Section Begin -->
+<section class="categories-page spad">
+    <div class="container">
+        <div class="categories-controls">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="categories-filter">
+                        <div class="cf-left">
+                            <form action="{{ url_for('soft_products' ) }}" method = "POST">
+                            <select class="sort" onchange="if(this.value != 0){ this.form.submit(); }" name ="sort">
+                                    <option value='0' selected="selected">Sort by</option>
+                                    <option value='1'>Orders</option>
+                                    <option value='2'>Newest</option>
+                                    <option value ='3'>Price</option>
+                                </select>
+                            </form>
+                        </div>
+                        <div class="cf-right">
+                            <span>8 Products</span>
+                            {% for page_num in products.iter_pages(left_edge = 1, right_edge = 1, left_current = 1, right_current = 2) %}
+                                {% if page_num %}
+                                    {% if products.page == page_num %}
+                                        <a href="{{ url_for('categories', page = page_num )}}" class="active"> {{ page_num }}</a>
+                                    {% else %}
+                                        <a href="{{ url_for('categories', page = page_num )}}"> {{ page_num }}</a>
+                                    {% endif %}
+                                {% endif%}
+                            {% endfor %}
+                            <!-- <a href="#">2</a>
+                            <a href="#" class="active">4</a>
+                            <a href="#">6</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for product in products.items %}
+            <div class="col-lg-3 col-md-6">
+                <div class="single-product-item">
+                    <figure><!-- {{ url_for('static', filename='img/icons/zoom-plus.png') }} -->
+                        <img src="{{ url_for('static', filename='img/products/' + product.image_file) }}" alt="">
+                        <div class="p-status">new</div>
+                        <div class="hover-icon">
+                            <a href="{{ url_for('static', filename='image/' + product.image_file) }}" class="pop-up"><img src="{{ url_for('static', filename='img/icons/zoom-plus.png') }}"
+                                    alt=""></a>
+                        </div>
+                    </figure>
+                    <div class="product-text">
+                        <a href="{{ url_for('product', product_id = product.id)}}">
+                            <h6> {{ product.title }}</h6>
+                        </a>
+                        <p>$ {{ product.price }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}  
+        <div class="more-product">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <!-- <a href="#" class="primary-btn">Load More</a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Categories Page Section End -->
+    
+{% endblock content %}

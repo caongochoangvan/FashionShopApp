@@ -1,0 +1,152 @@
+{% extends "layout.html" %}
+{% block content %}
+<!-- Page Add Section Begin -->
+<section class="page-add">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="page-breadcrumb">
+                    <h2>Cart<span>.</span></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Page Add Section End -->
+<!-- Cart Page Section Begin -->
+<div class="cart-page">
+    <div class="container">
+        <div class="cart-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="product-h">Product</th>
+                        <th>Price</th>
+                        <th class="quan">Quantity</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+            <!-- {{ url_for('static', filename='img/product/product-1.jpg') }} -->          
+                <tbody>
+                    
+                    <!-- cartitems -->
+                    {% for key in order %}
+                        
+                    <tr>
+                        <td class="product-col">
+                            <img src="{{ url_for('static', filename='img/products/' + order[key][1]) }}" alt="">
+                            <div class="p-title">
+                                <h5> {{ key }}</h5>
+                            </div>
+                        </td>
+                        <td class="price-col"> {{ order[key][0] }} </td>
+                        <form id="update" method="POST" action="{{ url_for('update_cart') }}"> 
+                        <td class="quantity-col">
+                            <div class="pro-qty">                    
+                                <input  type="text" value="{{ order[key][2] }}" name="update_qty">
+                            </div>
+                        </td>
+                        <div>
+                            <input type="text" value="{{ key }}" name="update_p" hidden>
+                        </div>
+                        </form>
+                        <td class="total">{{ order[key][3] }}</td>
+                        <td class="prollduct-close">
+                            <form action="{{ url_for('remove_from_cart', product_title = key) }}" method="POST">
+                                <input class="site-btn clear-btn" type="submit" value="R">
+                                
+                            </form>
+                            
+                            <input class="site-btn clear-btn" type="submit" value="U" form="update">
+                                
+                            
+
+                        </td>
+                    </tr>
+                    
+                    {% endfor %}  
+         
+                </tbody>
+            </table>
+        </div>
+        <div class="cart-btn">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="coupon-input">
+                        <input type="text" placeholder="Enter cupone code">
+                    </div>
+                </div>
+                <div class="col-lg-5 offset-lg-1 text-left text-lg-right">
+                    <form action="{{ url_for('delete_all') }}" method="POST">
+                            <input class="site-btn clear-btn" type="submit" value="Clear Cart">
+                    </form>
+                    
+                    <!-- <div class="site-btn clear-btn"></div> -->
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="shopping-method">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shipping-info">
+                        <h5>Choose a shipping</h5>
+                        <div class="chose-shipping">
+                            <div class="cs-item">
+                                <input type="radio" name="cs" id="one">
+                                <label for="one" class="active">
+                                    Free Standard shhipping
+                                    <span>Estimate for New York</span>
+                                </label>
+                            </div>
+                            <div class="cs-item">
+                                <input type="radio" name="cs" id="two">
+                                <label for="two">
+                                    Next Day delievery $10
+                                </label>
+                            </div>
+                            <div class="cs-item last">
+                                <input type="radio" name="cs" id="three">
+                                <label for="three">
+                                    In Store Pickup - Free
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="total-info">
+                        <div class="total-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Total</th>
+                                        <th>Subtotal</th>
+                                        <th>Shipping</th>
+                                        <th class="total-cart">Total Cart</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="total">$ {{ subtotal }}</td>
+                                        <td class="sub-total">$ {{ subtotal }}</td>
+                                        <td class="shipping">$ {{ shipping }}</td>
+                                        <td class="total-cart-p">$ {{ total }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 text-right">
+                                <a href="{{ url_for('checkout')}}" class="primary-btn chechout-btn">Proceed to checkout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Cart Page Section End -->
+{% endblock content %}

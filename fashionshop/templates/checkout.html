@@ -1,0 +1,215 @@
+{% extends "layout.html" %}
+{% block content %}
+<!-- Page Add Section Begin -->
+<section class="page-add">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="page-breadcrumb">
+                    <h2>Check Out<span>.</span></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Page Add Section End -->
+  <!-- Cart Total Page Begin -->
+  <section class="cart-total-page spad">
+    <div class="container">
+        <form action="#" class="checkout-form" method = "POST">
+            {{ form.hidden_tag() }}
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>Your Information</h3>
+                </div>
+                <div class="col-lg-9">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <p class="in-name">{{ form.name.label }}*</p>
+                        </div>
+                        <!-- <div class="col-lg-5">
+                            <input type="text" placeholder="First Name">
+                        </div> -->
+                        <div class="col-lg-5">
+                            <!-- <input type="text" placeholder="Last Name"> -->
+                            {% if form.name.errors %}
+                                {{ form.name(class="form-control form-control-lg is-invalid ") }}
+                                <div class="invalid-feedback ">
+                                    {% for error in form.name.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.name(class="form-control form-control-lg") }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <p class="in-name">{{ form.address.label }}*</p>
+                        </div>
+                        <div class="col-lg-10">
+                            <!-- <input type="text"> -->
+                            <!-- <input type="text">  -->
+                            {% if form.address.errors %}
+                                {{ form.address(class="form-control form-control-lg is-invalid ") }}
+                                <div class="invalid-feedback ">
+                                    {% for error in form.address.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.address(class="form-control form-control-lg") }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <p class="in-name">Country*</p>
+                        </div>
+                        <div class="col-lg-10">
+                            <select class="cart-select country-usa" name = "country_select">
+                                <option>Italy</option>
+                                <option>ThaiLand</option>
+                                <option>India</option>
+                                <option>Japan</option>
+                                <option>Combodia</option>
+                                <option>France</option>
+                                <option>Russia</option>
+                                <option>Australia</option>
+                                <option>Denmark </option>
+                                <option>Greece</option>
+                                <option>Spain</option>
+                                <option>Sweden</option>
+                                <option>Switzerland</option>
+                                <option>Turkey</option>
+                                <option>Mexico</option>
+                                <option>Brazil</option>
+                                <option>Korea</option>
+                                <option>Portugal</option>
+                                <option>Poland</option>
+                                <option>Vietnam</option>
+                                <option>United State</option>
+                                <option>United Kingdom</option>
+                            </select>                           
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <p class="in-name">{{ form.city.label }}*</p>
+                        </div>
+                        <div class="col-lg-10">
+                            <!-- <input type="text"> -->
+                            {% if form.city.errors %}
+                                {{ form.city(class="form-control form-control-lg is-invalid ") }}
+                                <div class="invalid-feedback ">
+                                    {% for error in form.city.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.city(class="form-control form-control-lg") }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="col-lg-2">
+                            <p class="in-name">Country</p>
+                        </div>
+                        <div class="col-lg-10">
+                            <input type="text">
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <p class="in-name">{{ form.postcode.label }}*</p>
+                        </div>
+                        <div class="col-lg-10">
+                            <!-- <input type="text"> -->
+                            {% if form.postcode.errors %}
+                                {{ form.postcode(class="form-control form-control-lg is-invalid ") }}
+                                <div class="invalid-feedback ">
+                                    {% for error in form.postcode.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.postcode(class="form-control form-control-lg") }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <p class="in-name">{{ form.phone.label }}*</p>
+                        </div>
+                        <div class="col-lg-10">
+                            <!-- <input type="text"> -->
+                            {% if form.phone.errors %}
+                                {{ form.phone(class="form-control form-control-lg is-invalid ") }}
+                                <div class="invalid-feedback ">
+                                    {% for error in form.phone.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.phone(class="form-control form-control-lg") }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 text-right">
+                            <div class="diff-addr">
+                                <input type="radio" id="one">
+                                <label for="one">Ship to different address</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="order-table">
+                        <!-- <div class="cart-item">
+                            <span>Product</span>
+                            <p class="product-name">Blue Dotted Shirt</p>
+                        </div> -->
+                        <div class="cart-item">
+                            <span>SubTotal</span>
+                            <p>${{ session['subtotal'] }}</p>
+                        </div>
+                        <!-- <div class="cart-item">
+                            <span>Quantity</span>
+                            <p>1</p>
+                        </div> -->
+                        <div class="cart-item">
+                            <span>Shipping</span>
+                            <p>${{ session['shipping'] }}</p>
+                        </div>
+
+                        <div class="cart-total">
+                            <span>Total</span>
+                            <p>${{ session['total'] }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- {{ url_for('static', filename='img/mastercard.jpg') }} -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="payment-method">
+                        <h3>Payment</h3>
+                        <ul>
+                            <li>Paypal <img src="{{ url_for('static', filename='img/paypal.jpg') }}" alt=""></li>
+                            <li>Credit / Debit card <img src="{{ url_for('static', filename='img/mastercard.jpg') }}" alt=""></li>
+                            <li>
+                                <label for="two">Pay when you get the package</label>
+                                <input type="radio" id="two">
+                            </li>
+                        </ul>
+                        <button type="submit">Place your order</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<!-- Cart Total Page End -->
+{% endblock content %}

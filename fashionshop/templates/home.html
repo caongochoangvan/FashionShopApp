@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{% block content %}
+    <!-- Hero Slider Begin -->
+    <section class="hero-slider">
+        <div class="hero-items owl-carousel">
+            <!-- {{ url_for('static', filename='img/menfashion.jpg') }} -->
+            <div class="single-slider-item set-bg" data-setbg="{{ url_for('static', filename='img/menfashion.jpg') }}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1>Men's</h1>
+                            <h2>Fashion</h2>
+                            <a href="{{ url_for('category',category_name = 'Men')}}" class="primary-btn">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- {{ url_for('static', filename='img/womenfashion.jpg') }} -->
+            <div class="single-slider-item set-bg" data-setbg="{{ url_for('static', filename='img/womenfashion.jpg') }}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1>Women's</h1>
+                            <h2>Fashion</h2>
+                            <a href="{{ url_for('category',category_name = 'Women')}}" class="primary-btn">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- {{ url_for('static', filename='img/fragrance.jpg') }} -->
+            <div class="single-slider-item set-bg" data-setbg="{{ url_for('static', filename='img/fragrance.jpg') }}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1>Luxury</h1>
+                            <h2>Fragrance</h2>
+                            <a href="{{ url_for('category',category_name = 'Fragrance')}}" class="primary-btn">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Slider End -->
+    <!-- Logo Section Begin -->
+    <!-- {{ url_for('static', filename='img/logos/logo-2.png') }} -->
+    <div class="logo-section spad">
+        <div class="logo-items owl-carousel">
+            <div class="logo-item">
+                <img src="{{ url_for('static', filename='img/logos/logo-1.png') }}" alt="">
+            </div>
+            <div class="logo-item">
+                <img src="{{ url_for('static', filename='img/logos/logo-2.png') }}" alt="">
+            </div>
+            <div class="logo-item">
+                <img src="{{ url_for('static', filename='img/logos/logo-3.png') }}" alt="">
+            </div>
+            <div class="logo-item">
+                <img src="{{ url_for('static', filename='img/logos/logo-4.png') }}" alt="">
+            </div>
+            <div class="logo-item">
+                <img src="{{ url_for('static', filename='img/logos/logo-5.png') }}" alt="">
+            </div>
+        </div>
+    </div>
+    <!-- Logo Section End -->
+
+    {% endblock content %}
