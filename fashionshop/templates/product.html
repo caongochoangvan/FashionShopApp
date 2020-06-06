@@ -83,6 +83,7 @@
         </div>
     </section>
     <!-- Product Page Section End -->
+    
     <!-- Comments Section Begin -->
     <section class="related-product spad">
         <div class="container">
@@ -93,6 +94,7 @@
                     </div>
                 </div>
             </div>
+            {% if current_user.is_authenticated %}
             <!-- <div class="row"></div> -->
             <article class="row">
                 <div class="col-md-12 col-sm-12">
@@ -152,7 +154,9 @@
          
                     </form>
                 </div>
-                
+                {% else %}
+                <p> You have to <a href="{{ url_for('login') }}" class="btn-outline-dark"> <b>Login</b></a> or <a href="{{ url_for('register') }}" class="btn-outline-dark"> <b>Register</b></a> to see and reply comments</p>
+                {% endif %}
             </div>
 
            

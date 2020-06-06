@@ -35,7 +35,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email = form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
-            # login_user(user, remember = form.remember.data)
+            login_user(user, remember = form.remember.data)
             flash(f'Login succesfully!', 'success')
             return redirect(url_for('home'))
         else:
@@ -237,5 +237,15 @@ def search():
         products.append(product)
     print(products)    
     return render_template('search.html', products = products, found = found)
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
+
+@app.route('/user')
+@login_required
+def user():
+    return render_template('user.html')
+
 
 

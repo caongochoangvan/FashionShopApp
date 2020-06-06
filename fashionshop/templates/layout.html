@@ -67,8 +67,7 @@
                 </div>
     <!--{{ url_for('static', filename='img/icons/bag.png') }}  -->
                 <div class="header-right">
-                    <img src="{{ url_for('static', filename='img/icons/search.png') }}" alt="" class="search-trigger">
-                    <img src="{{ url_for('static', filename='img/icons/man.png') }}" alt="">
+                    
                     <a href="{{ url_for('cart') }}">
                         <img src="{{ url_for('static', filename='img/icons/bag.png') }}" alt="">
                         {% if "quantity" in session %}
@@ -77,11 +76,21 @@
                             <span> 0 </span>
                         {% endif %}    
                     </a>
+                    <a href="{{ url_for('user')}}">
+                        <img src="{{ url_for('static', filename='img/icons/man.png') }}" alt="">
+                    </a>
+                    <img src="{{ url_for('static', filename='img/icons/search.png') }}" alt="" class="search-trigger">
                 </div>
-                <div class="user-access">
-                    <a href="{{ url_for('register') }}">Register</a>
-                    <a href="{{ url_for('login') }}" class="in">Log in</a>
-                </div>
+                {% if current_user.is_authenticated %}
+                    <div class="user-access">
+                        <a href="{{ url_for('logout') }}">Log out</a>
+                    </div>
+                {% else %}    
+                    <div class="user-access">
+                        <a href="{{ url_for('register') }}">Register</a>
+                        <a href="{{ url_for('login') }}" class="in">Log in</a>
+                    </div>
+                {% endif %}
                 <nav class="main-menu mobile-menu">
                     <ul>
                         <li><a class="active" href="{{ url_for('home') }}">Home</a></li>

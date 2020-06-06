@@ -3,7 +3,7 @@
 <section class="page-add">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-8">
                 <div class="page-breadcrumb">
                     <h2>User Information<span>.</span></h2>
                 </div>
@@ -15,9 +15,36 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
-                
+                <img class="rounded-circle" src="{{ url_for('static', filename ='img/profiles/'+ 'default.jpg') }}">
             </div>
             <div class="col-lg-8">
+                
+                    
+                
+                    <form class="contact-form">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <input type="text" placeholder="First Name" name="firstname">
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" placeholder="Last Name" name="lastname">
+                            </div>
+                            <div class="col-lg-12">
+                                <input type="email" placeholder="Birthday" name="Birthday">
+                                <input type="text" placeholder="Email" name="email">
+                                
+                            </div>
+                            <div class="col-lg-12 text-right">
+                                <button type="submit">Update</button>
+                            </div>
+                        </div>
+                    </form>   
+                    <!-- <ul class="p-info">
+                        <li>History</li>
+                        <li>Favorite Items</li>
+                        
+                    </ul> -->
+                
                 
             </div>
         </div>
