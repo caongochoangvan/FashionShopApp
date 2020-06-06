@@ -1,5 +1,5 @@
 from flask import redirect, flash, render_template, url_for, request
-from fashionshop.forms import RegistrationForm,LoginForm, InforForm
+from fashionshop.forms import RegistrationForm,LoginForm, InforForm, UserForm
 from fashionshop import db, bcrypt, app, es
 from fashionshop.models import *
 from flask_login import current_user, login_user, login_required, logout_user
@@ -242,10 +242,25 @@ def logout():
     logout_user()
     return redirect(url_for('home'))
 
-@app.route('/user')
+@app.route('/user', methods = ['GET','POST'])
 @login_required
 def user():
-    return render_template('user.html')
+    form = UserForm()
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        current_user.birthday = form.birthday.data
+        current_user.gender = form.gender.data
+        db.session.commit()
+        print('Save successfully!')
+        flash(f'Your account information has updated!','success')
+    elif request.method == 'GET':
+        form.username.data = current_user.username
+        form.email.data = current_user.email
+        form.birthday.data = current_user.birthday
+        form.gender.data = current_user.gender
+    return render_template('user.html', title='User',  form= form)
+    
 
 
 
