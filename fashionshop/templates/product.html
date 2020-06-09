@@ -96,28 +96,32 @@
             </div>
             {% if current_user.is_authenticated %}
             <!-- <div class="row"></div> -->
-            <article class="row">
-                <div class="col-md-12 col-sm-12">
-                <div class="panel panel-default arrow left">
-                    <div class="panel-body">
-                    <header class="text-left">
-                        <div class="comment-user"><i class="fa fa-user"></i> Van</div>
-                        <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> June 4, 2020</time>
-                    </header>
-                    <div class="comment-post">
-                        <p>
-                            I think you were made to fit perfectly in my arms.
-                        </p>
-                    </div>
-                    <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> </a></p>
-                    <hr>  
+            {% if comments%}
+                {% for comment in comments %}
+                    <article class="row">
+                        <div class="col-md-12 col-sm-12">
+                        <div class="panel panel-default arrow left">
+                            <div class="panel-body">
+                            <header class="text-left">
+                                <div class="comment-user"><i class="fa fa-user"></i> {{ comment.author.username }} </div>
+                                <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> {{ comment.date_posted.strftime('%b %d %Y') }} </time>
+                            </header>
+                            <div class="comment-post">
+                                <p>
 
-                    </div>
-                </div>
-                </div>
-            
-            </article>
-        
+                                    {{ comment.content }}
+                                </p>
+                            </div>
+                            <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> </a></p>
+                            <hr>  
+
+                            </div>
+                        </div>
+                        </div>
+                        
+                    </article>
+                {% endfor %}
+            {% endif %}
             <article class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="panel panel-default arrow left">
@@ -143,12 +147,12 @@
             <div class="row">
                 <div class="col-lg-1">
                     <!-- <input type="submit" placeholder="Comment" name="comment"> -->
-                    <p class=""><a href="#" class="btn btn-default btn-sm"><i class="fa fa-telegram fa-2x"></i> </a></p>
+                    <p class=""><input type="submit" form="comment_form" class="btn btn-default btn-sm" value="" ><i class="fa fa-telegram fa-2x"></i></p>
                 </div>
                 <div class="col-lg-11">
-                    <form class="contact-form">
+                    <form class="contact-form" id="comment_form" action="{{ url_for('new_comment', product_id = product.id) }}">
                         
-                            <input type="text" placeholder="Type your text ..." name="comment">
+                            <input type="text" placeholder="Type your text ..." name="content">
                     
                         
          

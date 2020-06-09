@@ -119,7 +119,11 @@ ol {
 /*---------------------
   Helper CSS
 -----------------------*/
-
+.site-logo {
+    transition: color 200ms cubic-bezier(.55, 0, .1, 1);
+    color: #050505;
+    font-size: 3rem;
+}
 .section-title h2 {
 	color: #1e1e1e;
 	font-size: 60px;

@@ -79,6 +79,7 @@ def category(category_name):
 @app.route('/product/<int:product_id>', methods=['POST','GET'])
 def product(product_id):
     product = Product.query.get_or_404(product_id)
+    comments = Comment.query.filter_by(product = product).order_by(Comment.date_posted.desc())
     print("product", product.title)
     if request.method == 'POST':
         quantity = int(request.form.get('quantity'))
@@ -106,8 +107,19 @@ def product(product_id):
         p = Product.query.get(id + 1)
         recommended_products.append(p)
     print('list of recommended products', recommended_products) 
-    return render_template('product.html', title = 'Product', product = product, recommended_products = recommended_products)
-
+    return render_template('product.html', title = 'Product', product = product, recommended_products = recommended_products, comments = comments)
+@app.route('/product/<int:product_id>/new_comment', methods = ['POST','GET'])
+@login_required
+def new_comment(product_id):
+    content = request.args.get('content')
+    print(content)
+    author = current_user
+    product = Product.query.get_or_404(product_id)
+    comment = Comment(content = content, author = author, product = product)
+    db.session.add(comment)
+    db.session.commit()
+    flash('Adding new comment successfully!')
+    return redirect(url_for('product', product_id = product.id))
 @app.route('/checkout', methods=['GET','POST'])
 def checkout():
     total = session['total']

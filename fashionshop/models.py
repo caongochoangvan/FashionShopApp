@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
     birthday = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
     gender = db.Column(db.String(10), nullable = False, default = 'Female')
     # db.relationship
-    posts = db.relationship('Comment', backref='author', lazy = True)
+    comments = db.relationship('Comment', backref='author', lazy = True)
     # def get_reset_token(self, expires_sec = 1):
     #     s = Serializer(current_app.config['SECRET_KEY'], expires_sec)
     #     return s.dumps({'user_id': self.id}).decode('utf-8')
@@ -37,6 +37,7 @@ class Comment(db.Model):
     date_posted = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
     content = db.Column(db.Text, nullable = False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable = False)
     def __repr__(self):
         return f"Comment('{self.title}','{self.date_posted}')" 
 class Product(db.Model):
@@ -49,6 +50,7 @@ class Product(db.Model):
     image_file = db.Column(db.String(), nullable = True, default='default.jpg')
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable = False)
     cartitems = db.relationship('CartItem', backref='Product', lazy = True)
+    comments = db.relationship('Comment', backref='product', lazy = True)
     # user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
 
     def __repr__(self):
