@@ -94,10 +94,28 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                
+                <div class="col-lg-11">
+                    <form class="contact-form" id="comment_form" action="{{ url_for('new_comment', product_id = product.id) }}">
+                        
+                            <input type="text" placeholder="Type your text ..." name="content">
+                    </form>
+                    {% if content_error %}
+                        <span class="is-invalid"> {{ content_error }} </span>
+                        
+                    {% endif %}
+                </div>
+                <div class="col-lg-1">
+                    <!-- <input type="submit" placeholder="Comment" name="comment"> -->
+                    <p class=""><input type="submit" form="comment_form" value="send" class="btn btn-outline-light btn-outline-dark" ></i></p>
+                </div>
+            </div> 
             {% if current_user.is_authenticated %}
             <!-- <div class="row"></div> -->
             {% if comments%}
                 {% for comment in comments %}
+
                     <article class="row">
                         <div class="col-md-12 col-sm-12">
                         <div class="panel panel-default arrow left">
@@ -112,7 +130,7 @@
                                     {{ comment.content }}
                                 </p>
                             </div>
-                            <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> </a></p>
+                            <p class="text-right "><a  class="btn btn-default btn-sm btn-dark" data-toggle="collapse" role="button" href="#chatbot" aria-expanded="false" aria-controls="chatbot"><i class="fa fa-reply"></i> </a></p>
                             <hr>  
 
                             </div>
@@ -120,46 +138,35 @@
                         </div>
                         
                     </article>
-                {% endfor %}
-            {% endif %}
-            <article class="row">
-                <div class="col-md-12 col-sm-12">
-                    <div class="panel panel-default arrow left">
-                        <div class="panel-body">
-                            <header class="text-left">
-                                <div class="comment-user "style="color: red;"><i class="fa fa-user-circle-o"></i> Bot</div>
-                                <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Jun 04, 2020</time>
-
-                            </header>
-                            
-                            <div class="comment-post">
-                                <p>
-                                    I feel completely comfortable with you.
-
-                                </p>
+                    <article class="row collapse" id ="chatbot">
+                        <div class="col-md-11 col-sm-11 offset-1">
+                            <div class="panel panel-default arrow left">
+                                <div class="panel-body">
+                                    <header class="text-left">
+                                        <div class="comment-user "style="color: red;"><i class="fa fa-user-circle-o"></i> Bot</div>
+                                        <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> {{ comment.date_posted.strftime('%b %d %Y') }}</time>
+        
+                                    </header>
+                                    
+                                    <div class="comment-post">
+                                        <p>
+                                           {{ comment.content_chatbot }}
+        
+                                        </p>
+                                    </div>
+                                        <!-- <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> </a></p> -->
+                                        <hr>  
+                                </div>
                             </div>
-                                <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> </a></p>
-                                <hr>  
                         </div>
-                    </div>
-                </div>
-            </article>
-            <div class="row">
-                <div class="col-lg-1">
-                    <!-- <input type="submit" placeholder="Comment" name="comment"> -->
-                    <p class=""><input type="submit" form="comment_form" class="btn btn-default btn-sm" value="" ><i class="fa fa-telegram fa-2x"></i></p>
-                </div>
-                <div class="col-lg-11">
-                    <form class="contact-form" id="comment_form" action="{{ url_for('new_comment', product_id = product.id) }}">
-                        
-                            <input type="text" placeholder="Type your text ..." name="content">
-                    
-                        
-         
-                    </form>
-                </div>
+                    </article>
+                {% endfor %}
+            {% endif %}   
                 {% else %}
-                <p> You have to <a href="{{ url_for('login') }}" class="btn-outline-dark"> <b>Login</b></a> or <a href="{{ url_for('register') }}" class="btn-outline-dark"> <b>Register</b></a> to see and reply comments</p>
+                <div class="row">
+                    <p> You have to <a href="{{ url_for('login') }}" class="btn-outline-dark"> <b>Login</b></a> or <a href="{{ url_for('register') }}" class="btn-outline-dark"> <b>Register</b></a> to see and reply comments</p>
+
+                </div>
                 {% endif %}
             </div>
 

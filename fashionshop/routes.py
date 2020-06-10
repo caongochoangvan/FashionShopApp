@@ -4,7 +4,8 @@ from fashionshop import db, bcrypt, app, es
 from fashionshop.models import *
 from flask_login import current_user, login_user, login_required, logout_user
 from product_recommender import *
-#TODO: FIX THE SPECIFIC CATEGORIES (MEN, WOMEN, FRAGRANCE, SORT) - paginate
+from chatbot import bot
+
 
 @app.route("/", methods=['GET', 'POST','PUT'])
 @app.route("/home")
@@ -101,24 +102,33 @@ def product(product_id):
    
         flash(f'Adding to shopping cart succesfully!', 'success')
     recommended_index_products = recommender(product_id - 1) 
-    print('recommended_index_products', recommended_index_products)
+    # print('recommended_index_products', recommended_index_products)
     recommended_products = []
     for id  in recommended_index_products:
         p = Product.query.get(id + 1)
         recommended_products.append(p)
-    print('list of recommended products', recommended_products) 
-    return render_template('product.html', title = 'Product', product = product, recommended_products = recommended_products, comments = comments)
+    # print('list of recommended products', recommended_products) 
+    if 'content_error' in session:
+        content_error = session['content_error']
+    else:
+        content_error = None
+    
+    return render_template('product.html', title = 'Product', product = product, recommended_products = recommended_products, comments = comments, content_error = content_error)
 @app.route('/product/<int:product_id>/new_comment', methods = ['POST','GET'])
 @login_required
 def new_comment(product_id):
     content = request.args.get('content')
-    print(content)
-    author = current_user
     product = Product.query.get_or_404(product_id)
-    comment = Comment(content = content, author = author, product = product)
-    db.session.add(comment)
-    db.session.commit()
-    flash('Adding new comment successfully!')
+    author = current_user
+    content_chatbot = str(bot.get_response(content))
+    if len(content) < 2 or len(content) > 100:
+        session['content_error'] = "The comment cannot too long or too short"
+        print('e')
+    else:
+        comment = Comment(content = content, author = author, product = product, content_chatbot = content_chatbot)
+        db.session.add(comment)
+        db.session.commit()
+        flash('Adding new comment successfully!')
     return redirect(url_for('product', product_id = product.id))
 @app.route('/checkout', methods=['GET','POST'])
 def checkout():

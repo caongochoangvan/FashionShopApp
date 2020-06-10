@@ -36,10 +36,12 @@ class Comment(db.Model):
     id = db.Column(db.Integer, primary_key = True)  
     date_posted = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
     content = db.Column(db.Text, nullable = False)
+    content_chatbot = db.Column(db.Text, nullable = False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable = False)
     def __repr__(self):
         return f"Comment('{self.title}','{self.date_posted}')" 
+
 class Product(db.Model):
     # __searchable__ = ['title','description']
     id = db.Column(db.Integer, primary_key = True) 
