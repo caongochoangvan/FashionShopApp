@@ -1,4 +1,77 @@
 {% extends "layout.html" %}
 {% block content %}
+<section class="page-add">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="page-breadcrumb">
+                    <h2>About Us</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="contact-section">
+    <div class="container">        
+        <div class="row">
+            <div class="col-lg-3">
+                
+                    <div class="rounded-circle">
+                        <figure>
+                            <img src="{{ url_for('static', filename ='img/profiles/'+ 'v.jpg') }}" alt="">
+                            
+                        </figure>
+                    
+                    </div>
+                
+            </div>
+            <div class="col-lg-9">
+                
+                <div class="product-content">
+                    <h2>Van Cao
+                        <small class="text-muted">Computer Science Student</small>
+                    </h2>
+                    <a></a>
+                    <hr/>
+                    <h6><q>Sleep. Eat. Code. Antisocial</q></h6>
+                    <p class="blockquote">The paragraph below is just a random paragraph. I am not a good writer, ok?</p>
 
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="contact-section">
+    <div class="container">        
+        <div class="row">
+            
+            <div class="col-lg-9">
+                
+                <div class="product-content">
+                    <h2>Duyen Nguyen
+                        <small class="text-muted">Software Engineering Student</small>
+                    </h2>
+                    <a></a>
+                    <hr/>
+                    <h6> <q>404 error - Nothing to show</q></h6>
+                    <p class="blockquote">The paragraph below is just a random paragraph. I am not a good writer, ok?</p>
+
+
+                </div>
+            </div>
+            <div class="col-lg-3">
+                
+                <div class="rounded-circle">
+                    <figure>
+                        <img src="{{ url_for('static', filename ='img/profiles/'+ 'd.jpg') }}" alt="">
+                        
+                    </figure>
+                
+                </div>
+            
+        </div>
+        </div>
+    </div>
+</section>
 {% endblock content %}
