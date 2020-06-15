@@ -25,7 +25,7 @@ import pandas as pd
 from fashionshop import es
 # from fashionshop import es
 import requests
-csv_file = pd.read_csv('index_data.csv')
+csv_file = pd.read_csv('products_data.csv')
 search_file = pd.concat([csv_file['title'], csv_file['description']], axis = 1)
 print(search_file)
 # r = requests.get('http://localhost:9200')

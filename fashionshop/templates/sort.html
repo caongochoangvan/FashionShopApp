@@ -34,7 +34,7 @@
                 <div class="col-lg-12">
                     <div class="categories-filter">
                         <div class="cf-left">
-                            <form action="{{ url_for('soft_products',category_name = 'All' ) }}" method = "POST">
+                            <form action="{{ url_for('soft_products',category_name = category_name ) }}" method = "POST">
                             <select class="sort" onchange="if(this.value != 0){ this.form.submit(); }" name ="sort">
                                     <option value='0' selected="selected">Sort by</option>
                                     <option value='1'>Orders</option>
@@ -48,9 +48,9 @@
                             {% for page_num in products.iter_pages(left_edge = 1, right_edge = 1, left_current = 1, right_current = 2) %}
                                 {% if page_num %}
                                     {% if products.page == page_num %}
-                                        <a href="{{ url_for('categories', page = page_num )}}" class="active"> {{ page_num }}</a>
+                                        <a href="{{ url_for('soft_products', category_name = category_name, page = page_num )}}" class="active"> {{ page_num }}</a>
                                     {% else %}
-                                        <a href="{{ url_for('categories', page = page_num )}}"> {{ page_num }}</a>
+                                        <a href="{{ url_for('soft_products', category_name = category_name, page = page_num )}}"> {{ page_num }}</a>
                                     {% endif %}
                                 {% endif%}
                             {% endfor %}

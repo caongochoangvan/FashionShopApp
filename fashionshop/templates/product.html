@@ -188,7 +188,7 @@
                         <div class="col-lg-3 col-sm-6">
                             <div class="single-product-item">
                                 <figure>
-                                    <a href="#"><img src="{{ url_for('static', filename='image/' + recommended_product.image_file) }}" alt=""></a>
+                                    <a href="{{ url_for('product', product_id = recommended_product.id)}}"><img src="{{ url_for('static', filename='image/' + recommended_product.image_file) }}" alt=""></a>
                                     <div class="p-status">new</div>
                                 </figure>
                                 <div class="product-text">

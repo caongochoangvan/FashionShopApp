@@ -60,23 +60,33 @@ def categories():
     products = Product.query.order_by(Product.title.desc()).paginate(page = page, per_page = 8)
     categories = Category.query.all()
     return render_template('categories.html', title = 'Categories', products = products, categories = categories)
-@app.route('/sort', methods = ['POST','GET'])
-def soft_products():
+@app.route('/sort/<string:category_name>', methods = ['POST','GET'])
+def soft_products(category_name):
     page = request.args.get('page', 1, type = int)
-    categories = Category.query.all()
-    # products = Product.query.order_by(Product.price.desc()).all()
-    sort = int(request.form.get("sort"))
+    print(request.form.get("sort"))
+    if 'sort' in session and request.form.get("sort") == None:
+        sort = session['sort']
+    else:
+        sort = int(request.form.get("sort"))
+        session['sort'] = sort
     print(sort)
-    sorts = {0 : Product.title, 1: Product.title,2: Product.date_posted, 3: Product.price}       
-    products = Product.query.order_by(sorts[sort].desc()).paginate(page = page, per_page = 8)
-    return render_template('categories.html', title = 'Categories', products = products, categories = categories)
+    sorts = {0 : Product.title, 1: Product.title,2: Product.date_posted, 3: Product.price}
+    categories = Category.query.all()
+    if category_name != 'All':
+        category = Category.query.filter_by(name = category_name).first_or_404()
+        products = Product.query.filter_by(type = category).order_by(sorts[sort].desc()).paginate(page = page, per_page = 8)
+    else:
+        category = None
+        products = Product.query.order_by(sorts[sort].desc()).paginate(page = page, per_page = 8)
+    # products = Product.query.order_by(Product.price.desc()).all()
+    return render_template('sort.html', title = 'Categories', products = products, categories = categories, category = category,category_name = category_name)
 @app.route('/categories/<string:category_name>')
 def category(category_name):
     page = request.args.get('page', 1, type = int)
     categories = Category.query.all()
     category = Category.query.filter_by(name = category_name).first_or_404()
     products = Product.query.filter_by(type = category).paginate(page = page, per_page = 8)
-    return render_template('categories.html', title = 'Categories', category = category, products = products, categories = categories)
+    return render_template('category.html', title = 'Categories', category = category, products = products, categories = categories,category_name = category_name)
 @app.route('/product/<int:product_id>', methods=['POST','GET'])
 def product(product_id):
     product = Product.query.get_or_404(product_id)
@@ -121,14 +131,14 @@ def new_comment(product_id):
     product = Product.query.get_or_404(product_id)
     author = current_user
     content_chatbot = str(bot.get_response(content))
-    if len(content) < 2 or len(content) > 100:
-        session['content_error'] = "The comment cannot too long or too short"
-        print('e')
-    else:
-        comment = Comment(content = content, author = author, product = product, content_chatbot = content_chatbot)
-        db.session.add(comment)
-        db.session.commit()
-        flash('Adding new comment successfully!')
+    # if len(content) < 2 or len(content) > 100:
+    #     session['content_error'] = "The comment cannot too long or too short"
+    #     print('e')
+    # else:
+    comment = Comment(content = content, author = author, product = product, content_chatbot = content_chatbot)
+    db.session.add(comment)
+    db.session.commit()
+    flash('Adding new comment successfully!')
     return redirect(url_for('product', product_id = product.id))
 @app.route('/checkout', methods=['GET','POST'])
 def checkout():
