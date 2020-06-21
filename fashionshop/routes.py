@@ -6,7 +6,6 @@ from flask_login import current_user, login_user, login_required, logout_user
 from product_recommender import *
 from chatbot import bot
 
-
 @app.route("/", methods=['GET', 'POST','PUT'])
 @app.route("/home")
 def home():
@@ -78,7 +77,6 @@ def soft_products(category_name):
     else:
         category = None
         products = Product.query.order_by(sorts[sort].desc()).paginate(page = page, per_page = 8)
-    # products = Product.query.order_by(Product.price.desc()).all()
     return render_template('sort.html', title = 'Categories', products = products, categories = categories, category = category,category_name = category_name)
 @app.route('/categories/<string:category_name>')
 def category(category_name):
@@ -98,8 +96,6 @@ def product(product_id):
             if not any(product.title in d for d in session['cart']):
                 session['cart'].append({product.title: quantity})  
             elif any(product.title in d for d in session['cart']):
-                # for d in session['cart']:
-                #     d.update((k, quantity) for k, v in d.items() if k == product.title)
                 for d in session['cart']:
                     d[product.title]+= quantity
         else:
@@ -112,12 +108,10 @@ def product(product_id):
    
         flash(f'Adding to shopping cart succesfully!', 'success')
     recommended_index_products = recommender(product_id - 1) 
-    # print('recommended_index_products', recommended_index_products)
     recommended_products = []
     for id  in recommended_index_products:
         p = Product.query.get(id + 1)
         recommended_products.append(p)
-    # print('list of recommended products', recommended_products) 
     if 'content_error' in session:
         content_error = session['content_error']
     else:
@@ -131,10 +125,6 @@ def new_comment(product_id):
     product = Product.query.get_or_404(product_id)
     author = current_user
     content_chatbot = str(bot.get_response(content))
-    # if len(content) < 2 or len(content) > 100:
-    #     session['content_error'] = "The comment cannot too long or too short"
-    #     print('e')
-    # else:
     comment = Comment(content = content, author = author, product = product, content_chatbot = content_chatbot)
     db.session.add(comment)
     db.session.commit()
@@ -145,7 +135,6 @@ def checkout():
     total = session['total']
     subtotal = session['subtotal']
     shipping = session['shipping']
-
     form = InforForm()
     if form.validate_on_submit():
         country = request.form.get('country_select')
@@ -166,29 +155,8 @@ def checkout():
         session.pop('order')
         return redirect(url_for('home'))
     return render_template('checkout.html', title = 'Check Out', form = form, total = total, subtotal = subtotal, shipping = shipping)
-
 @app.route('/cart', methods=['POST','GET'])
 def cart():
-    # cartitems = []
-    # if 'cart' in session:
-    #     for d in session['cart']:
-    #         for k in d:
-    #             # print(type(k), type(d[k]))
-    #             product = Product.query.filter_by(title = k).first()
-    #             # print(product.type)
-    #             cartitem = CartItem(Product = product, quantity = d[k])
-    #             # print(cartitem)
-    #             # print(cartitem.Product)
-    #             cartitems.append(cartitem)
-    # print(cartitems) 
-    # db.session.add_all(cartitems)  
-    # db.session.commit()     
-    # print(cartitems[0].Product.title)        
-    # print('You have your own items!')
-    # subtotal = 0
-    # shipping = 10
-    # total = subtotal + shipping
-    # return render_template('cart.html', title = 'Cart', cartitems = cartitems, total = total, subtotal = subtotal, shipping = shipping)
     subtotal = 0
     order = {}
     session['quantity'] = 0
@@ -196,37 +164,24 @@ def cart():
         print(session['cart'])
         for d in session['cart']:
             for k in d:
-                # print(type(k), type(d[k]))
                 product = Product.query.filter_by(title = k).first()
-                # print(product.type)
-                # order[product.title] = d[k] 
                 order[product.title] = []
                 order[product.title].append(product.price) 
                 order[product.title].append(product.image_file) 
                 order[product.title].append(d[k])
                 order[product.title].append(product.price * d[k]) 
                 subtotal += product.price * d[k]
-                # print(cartitem)
-                # print(cartitem.Product) 
                 session['quantity'] += d[k]
-    
     print(order)   
     session['order'] = order
     print('You have your own items!')
-    
-
-    
     shipping = 10
     coupon = 0
     total = subtotal + shipping
     session['shipping'] = shipping
     session['subtotal'] = subtotal
     session['total'] = total
-
     return render_template('cart.html', title = 'Cart', total = total, subtotal = subtotal, shipping = shipping, order = order)
-@app.route('/cart/add/<int:product_id>', methods=['POST'])
-def add_to_cart(product_id):
-    return render_template('cart.html', title = 'Cart')
 @app.route('/cart/remove/<string:product_title>', methods=['POST'])
 def remove_from_cart(product_title):
     print('before', session['cart'])
@@ -241,12 +196,10 @@ def delete_all():
     return redirect(url_for('cart'))
 @app.route('/cart/update',methods=['POST'])
 def update_cart():
-    # product = Product.query.filter_by(title = p).first()
     qty = request.form.get('update_qty')
     p = request.form.get('update_p')
     print(p,qty)
     print("update_cart")
-    
     for i in session['cart']:
         if p in i:
             i.update({p:int(qty)})
@@ -258,7 +211,6 @@ def search():
     doc_type = 'product'
     query = request.form.get('query')
     print(query)
-    # products = Product.query.search(query)
     query = es.search(index = index_name, body={'query':{'match': {'title': query}}})
     found = query['hits']['total']['value']
     products = []
@@ -273,7 +225,6 @@ def search():
 def logout():
     logout_user()
     return redirect(url_for('home'))
-
 @app.route('/user', methods = ['GET','POST'])
 @login_required
 def user():

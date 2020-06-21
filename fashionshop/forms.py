@@ -46,11 +46,3 @@ class UserForm(FlaskForm):
             user = User.query.filter_by(email = email.data).first()
             if user:
                 raise ValidationError('Hey! This email is taken. Please change the email!')
-# class ContactForm(FlaskForm):
-#     firstname = StringField('First Name', validators=[DataRequired(), Length(min = 2, max = 20)])
-#     lastname = StringField('Last Name', validators=[DataRequired(), Length(min = 2, max = 20)])
-#     email = StringField('Email', validators=[DataRequired(), Email()])
-#     subject = StringField('Subject', validators=[DataRequired(), Length(min = 2, max = 20)])
-#     message = StringField('Message', validators=[DataRequired(), Length(min = 2, max = 100)])
-    
-#     submit = SubmitField('Send Message')
