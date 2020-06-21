@@ -1,5 +1,5 @@
 # FashionShopApp
-Fashion Shop App :computer: is an e-commercial website project developed by :girl: me (academic purpose). The backend is written by Flask (Python) and the frontend used bootstrap. Moreover, there are also some A.I techniques :robot: that make the project unique. This project is a suitable tutorial :book: for self-taught beginner :smile: . Please give me 1 :star: if you find it useful :100:
+Fashion Shop App :computer: is an e-commercial website project developed by :girl: me (academic purpose). The backend is written by Flask (Python) and the frontend used bootstrap. Moreover, there are also some A.I techniques :robot: that make the project unique 👍 . This project is a suitable tutorial :book: for self-taught beginner :smile: . Please give me 1 :star: if you find it useful :100:
 # Demo
 <b>Link demo</b>: Coming soon.
 <br/>
@@ -24,7 +24,7 @@ Fashion Shop App :computer: is an e-commercial website project developed by :gir
 # Installation
 <b>Windows</b>
 1. downloading the project: <b> git clone </b> https://github.com/caongochoangvan/FashionShopApp.git
-2. installing virtualenv: <b> py -m pip install --user virtualenv </b> for 
+2. installing virtualenv: <b> py -m pip install --user virtualenv </b> 
 3. creating a virtual environment: <b>py -m venv env </b>
 4. activating virtual environment: <b>.\env\Scripts\activate </b>
 5. installing requirements.txt: <b>pip install -r requirements.txt </b>
