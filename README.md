@@ -3,7 +3,15 @@ Fashion Shop App is a e-commercial website project developing by me (academic pu
 # Demo
 <b>Link demo</b>: Coming soon.
 <br/>
-<b>Screen Shot</b>:
-<img src="https://github.com/caongochoangvan/FashionShopApp/tree/master/demo/home.png">
+<b>Screen Shot</b>: 
+<img src="./demo/home.png" alt="Home">
+<img src="./demo/sort.png" alt="Home">
+<img src="./demo/cart.png" alt="Home">
+<img src="./demo/cart2.png" alt="Home">
+<img src="./demo/login.png" alt="Home">
+<img src="./demo/signup.png" alt="Home">
+<img src="./demo/product.png" alt="Home">
+<img src="./demo/relatedproducts.png" alt="Home">
+<img src="./demo/checkout.png" alt="Home">
 # Tech/Framework used
 +
