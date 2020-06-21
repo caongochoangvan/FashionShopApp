@@ -1,5 +1,5 @@
 # FashionShopApp
-Fashion Shop App :computer: is a e-commercial website project developing by :girl: me (academic purpose). The backend is written by Flask (Python) and The frontend used bootstrap. Moreover, there are also some A.I techniques that makes the project unique. This project is a suitable tutorial for self-taught beginner.
+Fashion Shop App :computer: is an e-commercial website project developed by :girl: me (academic purpose). The backend is written by Flask (Python) and the frontend used bootstrap. Moreover, there are also some A.I techniques :robot: that make the project unique. This project is a suitable tutorial :book: for self-taught beginner :smile: . Please give me 1 :star: if you find it useful :100:
 # Demo
 <b>Link demo</b>: Coming soon.
 <br/>
