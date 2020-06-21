@@ -25,6 +25,7 @@ Jinja2==2.10
 joblib==0.15.1
 lxml==4.5.1
 MarkupSafe==1.0
+marshmallow==3.6.1
 mathparse==0.1.2
 murmurhash==1.0.2
 nltk==3.5
@@ -54,6 +55,7 @@ threadpoolctl==2.1.0
 tqdm==4.46.1
 urllib3==1.25.9
 wasabi==0.6.0
+webargs==6.1.0
 webencodings==0.5.1
 Werkzeug==0.14.1
 Whoosh==2.7.4
