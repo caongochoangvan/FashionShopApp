@@ -57,7 +57,7 @@ urllib3==1.25.9
 wasabi==0.6.0
 webargs==6.1.0
 webencodings==0.5.1
-Werkzeug==0.14.1
+Werkzeug==0.15.3
 Whoosh==2.7.4
 WTForms==2.1
 zipp==3.1.0
