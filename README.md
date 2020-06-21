@@ -39,3 +39,5 @@ Fashion Shop App :computer: is an e-commercial website project developed by :gir
 + Recommender System tutorial: https://www.youtube.com/watch?v=XoTwndOgXBM&t=2128s
 + Template: https://colorlib.com
 + Photos: https://unsplash.com/
+# Contact
+ [Van Cao](https://www.linkedin.com/in/vancao1999/)
