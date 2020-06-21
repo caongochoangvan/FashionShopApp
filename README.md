@@ -4,6 +4,7 @@ Fashion Shop App :computer: is an e-commercial website project developed by :gir
 <b>Link demo</b>: Coming soon.
 <br/>
 <b>Screen Shot</b>: 
+<img src="./demo/fashionshopapp.gif" alt="Home">
 <img src="./demo/home.png" alt="Home">
 <img src="./demo/sort.png" alt="Home">
 <img src="./demo/cart.png" alt="Home">
@@ -40,4 +41,6 @@ Fashion Shop App :computer: is an e-commercial website project developed by :gir
 + Template: https://colorlib.com
 + Photos: https://unsplash.com/
 # Contact
- [Van Cao](https://www.linkedin.com/in/vancao1999/)
+ Linkedin: [Van Cao](https://www.linkedin.com/in/vancao1999/)
+ Gmail: [Van Cao](caongochoangvan1999@gmail.com)
+
