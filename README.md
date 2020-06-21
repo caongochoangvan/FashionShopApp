@@ -41,6 +41,7 @@ Fashion Shop App :computer: is an e-commercial website project developed by :gir
 + Template: https://colorlib.com
 + Photos: https://unsplash.com/
 # Contact
- Linkedin: [Van Cao](https://www.linkedin.com/in/vancao1999/)
- Gmail: [Van Cao](caongochoangvan1999@gmail.com)
+ <b>Linkedin</b>: [Van Cao](https://www.linkedin.com/in/vancao1999/)
+ <br/>
+ <b>Gmail</b>: [Van Cao](caongochoangvan1999@gmail.com)
 
