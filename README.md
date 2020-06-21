@@ -16,6 +16,7 @@ Fashion Shop App is a e-commercial website project developing by me (academic pu
 # Tech/Framework used
 + <b>Backend</b>: Flask
 + <b>Frontend</b>: Template & Bootstrap
++ <b>Database</b>: Flask-SQLalchemy
 + <b>Search Function</b>: ElasticSearch
 + <b>Comment Section</b>: ChatterBot
 + <b>Related Products</b>: Recommemder System (Machine Learning)
