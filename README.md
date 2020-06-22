@@ -1,5 +1,5 @@
 # FashionShopApp
-Fashion Shop App :computer: is an e-commercial website project developed by :girl: me (academic purpose). The backend is written by Flask (Python) and the frontend used bootstrap. Moreover, there are also some A.I techniques :robot: that make the project unique 👍 . This project is a suitable tutorial :book: for self-taught beginner :smile: . Please give me 1 :star: if you find it useful :100:
+Fashion Shop App is an e-commercial website project that I developed :girl:. The backend is written by Flask (Python) and the frontend uses bootstrap. In addition to an easy-to-use and robust web interface, I also integrated some AI technologies :robot: to make the project unique. For example, there is a recommendation system to provide useful feedback on what a user might potentially want to buy, based on their previous choices. A chatbot is also used to provide a sense of personalized shopping and seamless service. I plan to implement even more interesting features as future work. Please give me :star: if you find it useful.
 # Demo
 <b>Link demo</b>: Coming soon.
 <br/>
@@ -43,5 +43,5 @@ Fashion Shop App :computer: is an e-commercial website project developed by :gir
 # Contact
  <b>Linkedin</b>: [Van Cao](https://www.linkedin.com/in/vancao1999/)
  <br/>
- <b>Gmail</b>: caongochoangvan1999@gmail.com
+ <b>Email</b>: caongochoangvan1999@gmail.com
 
