@@ -1,9 +1,9 @@
 # FashionShopApp
 Fashion Shop App is an e-commercial website project that I developed :girl:. The backend is written by Flask (Python) and the frontend uses bootstrap. In addition to an easy-to-use and robust web interface, I also integrated some AI technologies :robot: to make the project unique. For example, there is a recommendation system to provide useful feedback on what a user might potentially want to buy, based on their previous choices. A chatbot is also used to provide a sense of personalized shopping and seamless service. I plan to implement even more interesting features as future work. Please give me :star: if you find it useful.
 # Demo
-<b>Link demo</b>: Coming soon.
+<b>Link to demo</b>: Coming soon.
 <br/>
-<b>Screen Shot</b>: 
+<b>Screenshots</b>: 
 <img src="./demo/fashionshopapp.gif" alt="Home">
 <img src="./demo/home.png" alt="Home">
 <img src="./demo/sort.png" alt="Home">
