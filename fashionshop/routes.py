@@ -97,7 +97,8 @@ def product(product_id):
                 session['cart'].append({product.title: quantity})  
             elif any(product.title in d for d in session['cart']):
                 for d in session['cart']:
-                    d[product.title]+= quantity
+                    if product.title in d:
+                        d[product.title] += quantity
         else:
             session['cart'] = [{product.title: quantity}]
         print(session['cart'])
